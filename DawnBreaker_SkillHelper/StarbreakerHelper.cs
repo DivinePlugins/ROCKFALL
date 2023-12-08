@@ -7,6 +7,7 @@ using Divine.Entity.Entities.Units;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
+using Divine.Menu.EventArgs;
 using Divine.Numerics;
 using Divine.Order;
 using Divine.Order.EventArgs;
@@ -26,7 +27,7 @@ namespace DawnBreaker_SkillHelper
             Context.Menu.StarbreakerHelper.ValueChanged += StarbreakerHelper_ValueChanged;
         }
 
-        private void StarbreakerHelper_ValueChanged(Divine.Menu.Items.MenuSwitcher switcher, Divine.Menu.EventArgs.SwitcherEventArgs e)
+        private void StarbreakerHelper_ValueChanged(Divine.Menu.Items.MenuSwitcher switcher, SwitcherChangedEventArgs e)
         {
             if (e.Value)
             {
@@ -84,7 +85,7 @@ namespace DawnBreaker_SkillHelper
 
         private void OrderManager_OrderAdding(OrderAddingEventArgs e)
         {
-            
+
             if (e.Order.Ability != Context.Dawnbreaker.Starbreaker)
             {
                 return;

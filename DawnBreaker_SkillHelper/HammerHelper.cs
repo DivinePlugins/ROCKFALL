@@ -5,6 +5,7 @@ using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
+using Divine.Menu.EventArgs;
 using Divine.Order;
 using Divine.Order.EventArgs;
 using Divine.Prediction;
@@ -22,7 +23,7 @@ namespace DawnBreaker_SkillHelper
             Context.Menu.HammerHelper.ValueChanged += HammerHelper_ValueChanged;
         }
 
-        private void HammerHelper_ValueChanged(Divine.Menu.Items.MenuSwitcher switcher, Divine.Menu.EventArgs.SwitcherEventArgs e)
+        private void HammerHelper_ValueChanged(Divine.Menu.Items.MenuSwitcher switcher, SwitcherChangedEventArgs e)
         {
             if (e.Value)
             {

@@ -1,22 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32104.313
+VisualStudioVersion = 17.9.34321.82
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DawnBreaker_SkillHelper", "DawnBreaker_SkillHelper.csproj", "{C8F0F853-2816-44CA-9A21-EE0CFF0B3285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DawnBreaker_SkillHelper", "DawnBreaker_SkillHelper.csproj", "{660EB7F3-3B60-4EE9-A110-8CC1BD55CF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C8F0F853-2816-44CA-9A21-EE0CFF0B3285}.Release|x64.ActiveCfg = Release|x64
-		{C8F0F853-2816-44CA-9A21-EE0CFF0B3285}.Release|x64.Build.0 = Release|x64
+		{660EB7F3-3B60-4EE9-A110-8CC1BD55CF0E}.Debug|x64.ActiveCfg = Debug|x64
+		{660EB7F3-3B60-4EE9-A110-8CC1BD55CF0E}.Debug|x64.Build.0 = Debug|x64
+		{660EB7F3-3B60-4EE9-A110-8CC1BD55CF0E}.Release|x64.ActiveCfg = Release|x64
+		{660EB7F3-3B60-4EE9-A110-8CC1BD55CF0E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2179DB6F-368E-413A-A79A-C08236AAFD17}
+		SolutionGuid = {8367D72E-D232-4C3A-BCE1-AB5DC8433163}
 	EndGlobalSection
 EndGlobal

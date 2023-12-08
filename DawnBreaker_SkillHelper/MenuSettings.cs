@@ -3,24 +3,23 @@ using Divine.Menu.Items;
 
 namespace DawnBreaker_SkillHelper
 {
-    class Menu
+    class MenuSettings
     {
-        public RootMenu RootMenu { get; set; }
+        public Menu RootMenu { get; set; }
 
         public MenuSwitcher StarbreakerHelper { get; set; }
         public MenuSwitcher HammerHelper { get; set; }
 
-        public Menu(Context Context)
+        public MenuSettings(Context Context)
         {
-            RootMenu = MenuManager.CreateRootMenu("DawnBreaker Helper")
-                                  .SetHeroImage(Context.Dawnbreaker.LocalHero.HeroId);
+            RootMenu = MenuManager.HeroesMenu.AddMenu("DawnBreaker Helper").SetImage(Context.Dawnbreaker.LocalHero.Id);
 
-            StarbreakerHelper = RootMenu.CreateSwitcher("Starbreaker Helper")
-                                        .SetAbilityImage(Context.Dawnbreaker.Starbreaker.Id)
+            StarbreakerHelper = RootMenu.AddSwitcher("Starbreaker Helper")
+                                        .SetImage(Context.Dawnbreaker.Starbreaker.Id)
                                         .SetTooltip("Tries to hit as many heroes as possible");
 
-            HammerHelper = RootMenu.CreateSwitcher("Hammer Helper")
-                                   .SetAbilityImage(Context.Dawnbreaker.Hammer.Id)
+            HammerHelper = RootMenu.AddSwitcher("Hammer Helper")
+                                   .SetImage(Context.Dawnbreaker.Hammer.Id)
                                    .SetTooltip("Using hammer on the hero will lead to maximum rapprochement");
 
         }

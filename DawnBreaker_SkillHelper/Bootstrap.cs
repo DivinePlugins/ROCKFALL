@@ -10,7 +10,7 @@ namespace DawnBreaker_SkillHelper
 
         protected override void OnActivate()
         {
-            if (EntityManager.LocalHero.HeroId != HeroId.npc_dota_hero_dawnbreaker)
+            if (EntityManager.LocalHero.Id != HeroId.npc_dota_hero_dawnbreaker)
             {
                 return;
             }
