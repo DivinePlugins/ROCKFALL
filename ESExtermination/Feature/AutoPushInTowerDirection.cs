@@ -33,7 +33,7 @@ internal class AutoPushInTowerDirection : FeatureBase
         smash = context.Combo.Smash;
         enchant = context.Combo.Enchant;
 
-        featureMenu = rootMenu.AddMenu("Auto push under towers").SetImage((AbilityId.earth_spirit_boulder_smash.ToString(), ImageType.Ability));
+        featureMenu = rootMenu.AddMenu("Auto push under towers").SetImage(AbilityId.earth_spirit_boulder_smash);
         modeSelector = featureMenu.AddSelector("Mode", ["Off", "On", "Also with agha"]).SetTooltip("Auto use smash for push under tower");
         additionalRange = featureMenu.AddSlider("Additional range around tower", 0, -500, 1000);
     }

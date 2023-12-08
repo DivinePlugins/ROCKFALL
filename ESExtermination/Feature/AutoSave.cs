@@ -4,6 +4,7 @@ using System.Linq;
 
 using Divine.Entity;
 using Divine.Entity.Entities.Abilities.Components;
+using Divine.Entity.Entities.Abilities.Items.Components;
 using Divine.Entity.Entities.Units;
 using Divine.Extensions;
 using Divine.Menu;
@@ -35,7 +36,7 @@ internal class AutoSave : FeatureBase
         minHpPercentForSave = rootMenu
             .AddSlider("Min. HP% for save with enchant", 0, 0, 50)
             .SetTooltip("Uses enchant + smash for save")
-            .SetImage((AbilityId.item_ultimate_scepter.ToString(), ImageType.Ability));
+            .SetImage(ItemId.item_ultimate_scepter, true);
 
         myFountain = EntityManager.GetEntities<Unit>().FirstOrDefault(x => x.Name == fountainName
                                                                         && x.IsAlly(localHero));

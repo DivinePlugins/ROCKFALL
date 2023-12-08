@@ -39,7 +39,7 @@ namespace ESExtermination.Feature
 
             ultimateFeaturesMenu = rootMenu.AddMenu("Ultimate")
                 .SetTooltip("Ultimate features")
-                .SetImage((AbilityId.earth_spirit_magnetize.ToString(), ImageType.Ability));
+                .SetImage(AbilityId.earth_spirit_magnetize);
 
             autoUseMagnetize = ultimateFeaturesMenu.AddSlider("Min. enemies for auto ultimate", 2, 0, 5).SetTooltip("Set 0 for disable this feature");
             extendMagnetizeTime = ultimateFeaturesMenu.AddSwitcher("Extend magnetize debuff").SetTooltip("Place stone for update magnetize");

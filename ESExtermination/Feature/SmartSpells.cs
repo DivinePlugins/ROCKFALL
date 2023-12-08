@@ -48,9 +48,9 @@ namespace ESExtermination.Feature
 
             var smartSpellsMenu = rootMenu.AddMenu("Smart spells").SetTooltip("Auto place stone when it is necessary");
 
-            smartSmash = smartSpellsMenu.AddSwitcher("When using smash").SetImage((AbilityId.earth_spirit_boulder_smash.ToString(), ImageType.Ability));
-            smartRoll = smartSpellsMenu.AddSwitcher("When using roll").SetImage((AbilityId.earth_spirit_rolling_boulder.ToString(), ImageType.Ability));
-            smartGrip = smartSpellsMenu.AddSwitcher("When using grip").SetImage((AbilityId.earth_spirit_geomagnetic_grip.ToString(), ImageType.Ability));
+            smartSmash = smartSpellsMenu.AddSwitcher("When using smash").SetImage(AbilityId.earth_spirit_boulder_smash);
+            smartRoll = smartSpellsMenu.AddSwitcher("When using roll").SetImage(AbilityId.earth_spirit_rolling_boulder);
+            smartGrip = smartSpellsMenu.AddSwitcher("When using grip").SetImage(AbilityId.earth_spirit_geomagnetic_grip);
 
         }
 

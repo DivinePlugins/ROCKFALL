@@ -33,7 +33,7 @@ internal class Context
     public Context()
     {
         LocalHero = EntityManager.LocalHero;
-        RootMenu = MenuManager.HeroesMenu.AddMenu("ESExtermination").SetImage((HeroId.npc_dota_hero_earth_spirit.ToString(), ImageType.Unit));
+        RootMenu = MenuManager.HeroesMenu.AddMenu("ESExtermination").SetImage(HeroId.npc_dota_hero_earth_spirit);
 
         Status = RootMenu.AddSwitcher("On/Off");
 

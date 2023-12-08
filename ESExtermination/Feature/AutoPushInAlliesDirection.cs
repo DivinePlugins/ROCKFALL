@@ -32,7 +32,7 @@ class AutoPushInAlliesDirection : FeatureBase
         smash = context.Combo.Smash;
         enchant = context.Combo.Enchant;
 
-        featureMenu = rootMenu.AddMenu("Auto push under allies").SetImage((AbilityId.earth_spirit_boulder_smash.ToString(), ImageType.Ability));
+        featureMenu = rootMenu.AddMenu("Auto push under allies").SetImage(AbilityId.earth_spirit_boulder_smash);
         modeSelector = featureMenu.AddSelector("Mode", ["Off", "On", "Also with agha"]).SetTooltip("Auto use smash for push in allies");
         minAllyHpPercent = featureMenu.AddSlider("Min. ally hp %", 20, 0, 80);
     }
