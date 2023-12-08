@@ -1,4 +1,7 @@
-﻿using TemplarAssasinDestruction.Abilities.Items;
+﻿using Divine.Menu.EventArgs;
+using Divine.Menu.Items;
+
+using TemplarAssasinDestruction.Abilities.Items;
 using TemplarAssasinDestruction.Abilities.Spells;
 using TemplarAssasinDestruction.Modes;
 
@@ -21,7 +24,7 @@ namespace TemplarAssasinDestruction
             PluginMenu.PluginStatus.ValueChanged += PluginStatus_ValueChanged;
         }
 
-        private void PluginStatus_ValueChanged(Divine.Menu.Items.MenuSwitcher switcher, Divine.Menu.EventArgs.SwitcherEventArgs e)
+        private void PluginStatus_ValueChanged(MenuSwitcher switcher, SwitcherChangedEventArgs e)
         {
             if (e.Value)
             {

@@ -38,7 +38,7 @@ namespace TemplarAssasinDestruction.Modes
             UpdateManager.IngameUpdate -= UpdateManager_IngameUpdate;
         }
 
-        private void ComboKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyEventArgs e)
+        private void ComboKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyChangedEventArgs e)
         {
             if (e.Value)
             {
@@ -52,7 +52,7 @@ namespace TemplarAssasinDestruction.Modes
 
         private void UpdateManager_IngameUpdate()
         {
-            if (!LocalHero.IsAlive  || TA.PsionicProj.BasePsionicProj.IsChanneling || ProjSleeper.Sleeping)
+            if (!LocalHero.IsAlive  || TA.PsionicProj.BasePsionicProj.IsChanneling || ProjSleeper.IsSleeping)
             {
                 return;
             }
@@ -72,7 +72,7 @@ namespace TemplarAssasinDestruction.Modes
                         .OrderBy(x => x.Distance2D(target))
                         .FirstOrDefault();
 
-            if (!OrbWalkerSleeper.Sleeping)
+            if (!OrbWalkerSleeper.IsSleeping)
             {
                 if (enemyNearTarget != null)
                 {
@@ -95,7 +95,7 @@ namespace TemplarAssasinDestruction.Modes
                 }
             }
 
-            if (ComboSleeper.Sleeping)
+            if (ComboSleeper.IsSleeping)
             {
                 return;
             }
@@ -114,14 +114,11 @@ namespace TemplarAssasinDestruction.Modes
                 return;
             }
 
-       
             if (TA.Trap.Execute())
             {
                 ComboSleeper.Sleep(150);
                 return;
             }
-
-           
 
             if (TA.Refraction.Execute())
             {

@@ -35,7 +35,7 @@ namespace TemplarAssasinDestruction.Modes
             UpdateManager.IngameUpdate -= UpdateManager_IngameUpdate;
         }
 
-        private void HarassKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyEventArgs e)
+        private void HarassKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyChangedEventArgs e)
         {
             if (e.Value)
             {
@@ -81,7 +81,7 @@ namespace TemplarAssasinDestruction.Modes
 
             var nearestEnemy = entities
                 .OfType<Hero>()
-                .Where(x => x.Distance2D(LocalHero) < Extensions.GetAttackRange() * 3 
+                .Where(x => x.Distance2D(LocalHero) < Extensions.GetAttackRange() * 3
                                     && x.IsVisible
                                     && x.IsEnemy(LocalHero)
                                     && x.IsAlive)
@@ -103,10 +103,10 @@ namespace TemplarAssasinDestruction.Modes
 
             foreach (var creep in nearestDamagableCreeps)
             {
-                harassPoints.Add(creep.Position.Extend(nearestEnemy.Position, -(attackRange * 0.8f)), creep);             
+                harassPoints.Add(creep.Position.Extend(nearestEnemy.Position, -(attackRange * 0.8f)), creep);
             }
 
-            
+
 
             var nearestHarassPoint = harassPoints
                 .Where(x => x.Key.Distance2D(nearestEnemy.Position) < attackRange * 2)

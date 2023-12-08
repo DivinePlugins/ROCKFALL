@@ -21,7 +21,7 @@ namespace TemplarAssasinDestruction
             Context.PluginMenu.ComboKey.ValueChanged += ComboKey_ValueChanged;
         }
 
-        private void ComboKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyEventArgs e)
+        private void ComboKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyChangedEventArgs e)
         {
             if (e.Value)
             {

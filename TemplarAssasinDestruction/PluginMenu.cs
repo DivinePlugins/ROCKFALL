@@ -1,11 +1,8 @@
 ﻿using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Units.Heroes.Components;
-using Divine.Input;
 using Divine.Menu;
+using Divine.Menu.Components;
 using Divine.Menu.Items;
-
-using System.Collections.Generic;
-using System.Windows.Input;
 
 namespace TemplarAssasinDestruction
 {
@@ -20,33 +17,32 @@ namespace TemplarAssasinDestruction
 
         private Menu RootMenu;
 
-        private Dictionary<AbilityId, bool> Items = new Dictionary<AbilityId, bool>
-        {
-            { AbilityId.item_blink, true },
-            { AbilityId.item_swift_blink, true },
-            { AbilityId.item_overwhelming_blink, true },
-            { AbilityId.item_arcane_blink, true },
-            { AbilityId.item_black_king_bar, true },
-            { AbilityId.item_sheepstick, true },
-            { AbilityId.item_manta, true },
-            { AbilityId.item_nullifier, true },
-            { AbilityId.item_orchid, true },
-            { AbilityId.item_bloodthorn, true }
-        };
-
+        private readonly MenuTogglerAbility[] Items =
+        [
+            (AbilityId.item_blink, true),
+            (AbilityId.item_swift_blink, true),
+            (AbilityId.item_overwhelming_blink, true),
+            (AbilityId.item_arcane_blink, true),
+            (AbilityId.item_black_king_bar, true),
+            (AbilityId.item_sheepstick, true),
+            (AbilityId.item_manta, true),
+            (AbilityId.item_nullifier, true),
+            (AbilityId.item_orchid, true),
+            (AbilityId.item_bloodthorn, true)
+        ];
 
         public PluginMenu()
         {
-            RootMenu = MenuManager.CreateRootMenu("TADestruction")
-                .SetHeroImage(HeroId.npc_dota_hero_templar_assassin)
+            RootMenu = MenuManager.HeroesMenu.AddMenu("TADestruction")
+                .SetImage(HeroId.npc_dota_hero_templar_assassin)
                 .SetTooltip("V1.2 BETA");
 
-            PluginStatus = RootMenu.CreateSwitcher("On/Off");
-            ComboKey = RootMenu.CreateHoldKey("Combo Key", Key.None);
-            ComboItems = RootMenu.CreateItemToggler("Items", Items);
-            HarassMenu = RootMenu.CreateMenu("Harass Settings");
-            HarassMode = HarassMenu.CreateSelector("Harass Mode", new string[2] { "Closest Harass Position", " To Mouse" });
-            HarassKey = HarassMenu.CreateHoldKey("Harass Key", Key.None);
+            PluginStatus = RootMenu.AddSwitcher("On/Off");
+            ComboKey = RootMenu.AddHoldKey("Combo Key");
+            ComboItems = RootMenu.AddItemToggler("Items", Items);
+            HarassMenu = RootMenu.AddMenu("Harass Settings");
+            HarassMode = HarassMenu.AddSelector("Harass Mode", ["Closest Harass Position", " To Mouse"]);
+            HarassKey = HarassMenu.AddHoldKey("Harass Key");
 
         }
     }
