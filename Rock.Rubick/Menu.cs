@@ -13,17 +13,18 @@ namespace RockRubick
 
         public void MenuBootstrap()
         {
-            var rootmenu = MenuManager.CreateRootMenu("Rock.Rubick").SetHeroImage(HeroId.npc_dota_hero_rubick);
+            var rootmenu = MenuManager.HeroesMenu.AddMenu("Rock.Rubick").SetImage(HeroId.npc_dota_hero_rubick);
 
-            RubickEnabled = rootmenu.CreateSwitcher("Spell Stealer").SetAbilityImage(AbilityId.rubick_spell_steal);
+            RubickEnabled = rootmenu.AddSwitcher("Spell Stealer").SetImage(AbilityId.rubick_spell_steal);
 
             RubickEnabled.ValueChanged += RubickEnabled_ValueChanged;
         }
 
-        private void RubickEnabled_ValueChanged(MenuSwitcher switcher, SwitcherEventArgs e)
+        private void RubickEnabled_ValueChanged(MenuSwitcher switcher, SwitcherChangedEventArgs e)
         {
             if (e.Value)
             {
+                new General();
                 spellStealMain = new SpellStealMain();
             }
             else

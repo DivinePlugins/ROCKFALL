@@ -8,15 +8,12 @@ namespace RockRubick
     {
         protected override void OnActivate()
         {
-            if (EntityManager.LocalHero.HeroId != HeroId.npc_dota_hero_rubick)
+            if (EntityManager.LocalHero.Id != HeroId.npc_dota_hero_rubick)
             {
                 return;
             }
 
             new Menu().MenuBootstrap();
-
-            new General();
-            new SpellStealMain();
         }
     }
 }

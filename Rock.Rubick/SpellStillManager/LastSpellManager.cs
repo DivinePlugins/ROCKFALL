@@ -83,13 +83,13 @@ namespace RockRubick
             }
             if (particle.Name == "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf")
             {
-  
+
                 AddSpecific(hero, AbilityId.pangolier_swashbuckle);
                 return;
             }
             if (particle.Name == "particles/units/heroes/hero_pangolier/pangolier_tailthump_cast.vpcf")
             {
-  
+
                 AddSpecific(hero, AbilityId.pangolier_shield_crash);
                 return;
             }
