@@ -5,7 +5,10 @@ using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
 using Divine.Helpers;
+using Divine.Menu;
+using Divine.Menu.EventArgs;
 using Divine.Menu.Items;
+using Divine.Renderer;
 using Divine.Update;
 using ESExtermination.Abilities.Spells;
 using ESExtermination.Extensions;
@@ -34,20 +37,13 @@ namespace ESExtermination.Feature
             smash = context.Combo.Smash;
             grip = context.Combo.Grip;
 
-            ultimateFeaturesMenu = rootMenu.CreateMenu("Ultimate")
+            ultimateFeaturesMenu = rootMenu.AddMenu("Ultimate")
                 .SetTooltip("Ultimate features")
-                .SetAbilityImage(AbilityId.earth_spirit_magnetize);
+                .SetImage((AbilityId.earth_spirit_magnetize.ToString(), ImageType.Ability));
 
-            autoUseMagnetize = ultimateFeaturesMenu.CreateSlider("Min. enemies for auto ultimate", 2, 0, 5)
-                                                   .SetTooltip("Set 0 for disable this feature");
-
-            extendMagnetizeTime = ultimateFeaturesMenu.CreateSwitcher("Extend magnetize debuff")
-                                                                  .SetTooltip("Place stone for update magnetize");
-
-            minStones = ultimateFeaturesMenu.CreateSlider("Min stones for extend magnetize debuff", 2, 0, 5)
-                                            .SetTooltip("If stones charges < this value then no stones will be placed");
-
-            minStones.IsHidden = true;
+            autoUseMagnetize = ultimateFeaturesMenu.AddSlider("Min. enemies for auto ultimate", 2, 0, 5).SetTooltip("Set 0 for disable this feature");
+            extendMagnetizeTime = ultimateFeaturesMenu.AddSwitcher("Extend magnetize debuff").SetTooltip("Place stone for update magnetize");
+            minStones = ultimateFeaturesMenu.AddSlider("Min stones for extend magnetize debuff", 2, 0, 5).SetTooltip("If stones charges < this value then no stones will be placed").Hide();
         }
 
         public override void Start()
@@ -64,23 +60,23 @@ namespace ESExtermination.Feature
 
         }
 
-        private void AutoPlaceStoneForUpdateUltimate_ValueChanged(MenuSwitcher switcher, Divine.Menu.EventArgs.SwitcherEventArgs e)
+        private void AutoPlaceStoneForUpdateUltimate_ValueChanged(MenuSwitcher switcher, SwitcherChangedEventArgs e)
         {
             if (e.Value)
             {
-                minStones.IsHidden = false;
+                minStones.Show();
                 UpdateManager.CreateIngameUpdate(200, ExtendUpdater);
             }
             else
             {
-                minStones.IsHidden = true;
+                minStones.Hide();
                 UpdateManager.DestroyIngameUpdate(ExtendUpdater);
             }
         }
 
-        private void AutoUseMagnetize_ValueChanged(MenuSlider slider, Divine.Menu.EventArgs.SliderEventArgs e)
+        private void AutoUseMagnetize_ValueChanged(MenuSlider slider, SliderChangedEventArgs e)
         {
-            if (e.NewValue > 0)
+            if (e.Value > 0)
             {
                 UpdateManager.CreateIngameUpdate(200, AutoUlt);
             }

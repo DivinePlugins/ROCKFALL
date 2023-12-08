@@ -1,106 +1,108 @@
-﻿using System;
+﻿namespace ESExtermination;
+
+using System;
 using System.Linq;
+
 using Divine.Entity;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
+using Divine.Menu.EventArgs;
+using Divine.Menu.Items;
 using Divine.Numerics;
 using Divine.Particle;
 using Divine.Update;
 
-namespace ESExtermination
+internal class TargetSelector : IDisposable
 {
-    internal class TargetSelector : IDisposable
+    public static Hero CurrentTarget { get; set; }
+
+    private Context context;
+    private Hero localHero;
+
+    public TargetSelector(Context context)
     {
-        public static Hero CurrentTarget { get; set; }
+        this.context = context;
+        localHero = context.LocalHero;
+    }
 
-        private Context context;
-        private Hero localHero;
+    public void Start()
+    {
+        context.ComboKey.ValueChanged += ComboKey_ValueChanged;
+    }
 
-        public TargetSelector(Context context)
+    public void Dispose()
+    {
+        ParticleManager.DestroyParticle("TargetParticle");
+        context.ComboKey.ValueChanged -= ComboKey_ValueChanged;
+        UpdateManager.DestroyIngameUpdate(TargetUpdater);
+    }
+
+    private void ComboKey_ValueChanged(MenuHoldKey holdKey, HoldKeyChangedEventArgs e)
+    {
+        if (e.Value)
         {
-            this.context = context;
-            localHero = context.LocalHero;
+            UpdateManager.CreateIngameUpdate(25, TargetUpdater);
         }
-
-        public void Start()
+        else
         {
-            context.ComboKey.ValueChanged += ComboKey_ValueChanged;
-        }
-
-        public void Dispose()
-        {
-            ParticleManager.RemoveParticle("TargetParticle");
-            context.ComboKey.ValueChanged -= ComboKey_ValueChanged;
+            CurrentTarget = null;
+            ParticleManager.DestroyParticle("TargetParticle");
             UpdateManager.DestroyIngameUpdate(TargetUpdater);
         }
+    }
 
-        private void ComboKey_ValueChanged(Divine.Menu.Items.MenuHoldKey holdKey, Divine.Menu.EventArgs.HoldKeyEventArgs e)
+    private Hero GetNearestToMouse()
+    {
+        var mousePos = GameManager.MousePosition;
+
+        Hero target = EntityManager.GetEntities<Hero>()
+            .Where(x => x.Distance2D(mousePos) < 600
+                    && x.IsAlive
+                    && (!x.IsIllusion || x.HasModifier("modifier_morphling_replicate"))
+                    && x.IsEnemy(context.LocalHero)
+                    && x.IsVisible)
+            .OrderBy(x => x.Distance2D(mousePos))
+            .FirstOrDefault();
+
+        return target;
+    }
+
+    private void TargetUpdater()
+    {
+        CurrentTarget = GetNearestToMouse();
+
+        if (CurrentTarget == null)
         {
-            if (e.Value)
+            if (!context.LockedTarget.Value)
             {
-                UpdateManager.CreateIngameUpdate(25, TargetUpdater);
+                UpdateManager.DestroyIngameUpdate(TargetParticleUpdater);
             }
-            else
+
+            ParticleManager.DestroyParticle("TargetParticle");
+        }
+        else
+        {
+            if (context.LockedTarget.Value)
             {
-                CurrentTarget = null;
-                ParticleManager.RemoveParticle("TargetParticle");
                 UpdateManager.DestroyIngameUpdate(TargetUpdater);
+                UpdateManager.CreateIngameUpdate(25, TargetParticleUpdater);
+
             }
+
+            ParticleManager.CreateTargetLineParticle("TargetParticle", localHero, CurrentTarget.Position, Color.Aqua);
         }
+    }
 
-        private Hero GetNearestToMouse()
+    private void TargetParticleUpdater()
+    {
+        if (CurrentTarget == null)
         {
-            var mousePos = GameManager.MousePosition;
-
-            Hero target = EntityManager.GetEntities<Hero>()
-                .Where(x => x.Distance2D(mousePos) < 600
-                        && x.IsAlive
-                        && (!x.IsIllusion || x.HasModifier("modifier_morphling_replicate"))
-                        && x.IsEnemy(context.LocalHero)
-                        && x.IsVisible)
-                .OrderBy(x => x.Distance2D(mousePos))
-                .FirstOrDefault();
-
-            return target;
+            ParticleManager.DestroyParticle("TargetParticle");
         }
-
-        private void TargetUpdater()
+        else
         {
-            CurrentTarget = GetNearestToMouse();
-
-            if (CurrentTarget == null)
-            {
-                if (!context.LockedTarget.Value)
-                {
-                    UpdateManager.DestroyIngameUpdate(TargetParticleUpdater);
-                }
-
-                ParticleManager.RemoveParticle("TargetParticle");
-            }
-            else
-            {
-                if (context.LockedTarget.Value)
-                {
-                    UpdateManager.DestroyIngameUpdate(TargetUpdater);
-                    UpdateManager.CreateIngameUpdate(25, TargetParticleUpdater);
-
-                }
-
-                ParticleManager.CreateTargetLineParticle("TargetParticle", localHero, CurrentTarget.Position, Color.Aqua);
-            }
-        }
-
-        private void TargetParticleUpdater()
-        {
-            if (CurrentTarget == null)
-            {
-                ParticleManager.RemoveParticle("TargetParticle");
-            }
-            else
-            {
-                ParticleManager.CreateTargetLineParticle("TargetParticle", localHero, CurrentTarget.Position, Color.Aqua);
-            }
+            ParticleManager.CreateTargetLineParticle("TargetParticle", localHero, CurrentTarget.Position, Color.Aqua);
         }
     }
 }

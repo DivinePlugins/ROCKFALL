@@ -6,9 +6,11 @@ using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
 using Divine.Input;
+using Divine.Menu;
 using Divine.Menu.Items;
 using Divine.Order;
 using Divine.Order.Orders.Components;
+using Divine.Renderer;
 using Divine.Update;
 
 using ESExtermination.Abilities.Spells;
@@ -44,17 +46,11 @@ namespace ESExtermination.Feature
 
             stoneName = StoneExtensions.StoneName;
 
-            var smartSpellsMenu = rootMenu.CreateMenu("Smart spells")
-                .SetTooltip("Auto place stone when it is necessary");
+            var smartSpellsMenu = rootMenu.AddMenu("Smart spells").SetTooltip("Auto place stone when it is necessary");
 
-            smartSmash = smartSpellsMenu.CreateSwitcher("When using smash")
-                                        .SetAbilityImage(AbilityId.earth_spirit_boulder_smash);
-
-            smartRoll = smartSpellsMenu.CreateSwitcher("When using roll")
-                                       .SetAbilityImage(AbilityId.earth_spirit_rolling_boulder);
-
-            smartGrip = smartSpellsMenu.CreateSwitcher("When using grip")
-                                       .SetAbilityImage(AbilityId.earth_spirit_geomagnetic_grip);
+            smartSmash = smartSpellsMenu.AddSwitcher("When using smash").SetImage((AbilityId.earth_spirit_boulder_smash.ToString(), ImageType.Ability));
+            smartRoll = smartSpellsMenu.AddSwitcher("When using roll").SetImage((AbilityId.earth_spirit_rolling_boulder.ToString(), ImageType.Ability));
+            smartGrip = smartSpellsMenu.AddSwitcher("When using grip").SetImage((AbilityId.earth_spirit_geomagnetic_grip.ToString(), ImageType.Ability));
 
         }
 
