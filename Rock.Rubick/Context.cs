@@ -6,17 +6,19 @@ using Divine.Menu.Items;
 
 namespace RockRubick
 {
-    internal sealed class Menu
+    internal sealed class Context
     {
         private static MenuSwitcher RubickEnabled;
         private SpellStealMain spellStealMain;
 
-        public void MenuBootstrap()
+        public Context()
         {
             var rootmenu = MenuManager.HeroesMenu.AddMenu("Rock.Rubick").SetImage(HeroId.npc_dota_hero_rubick);
-
             RubickEnabled = rootmenu.AddSwitcher("Spell Stealer").SetImage(AbilityId.rubick_spell_steal);
+        }
 
+        public void Activate()
+        {
             RubickEnabled.ValueChanged += RubickEnabled_ValueChanged;
         }
 

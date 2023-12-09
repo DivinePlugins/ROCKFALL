@@ -4,8 +4,15 @@ using Divine.Service;
 
 namespace RockRubick
 {
-    internal sealed class Bootstap : Bootstrapper
+    internal sealed class Bootstrap : Bootstrapper
     {
+        private Context Context;
+
+        protected override void OnMainActivate()
+        {
+            Context = new Context();
+        }
+
         protected override void OnActivate()
         {
             if (EntityManager.LocalHero.Id != HeroId.npc_dota_hero_rubick)
@@ -13,7 +20,7 @@ namespace RockRubick
                 return;
             }
 
-            new Menu().MenuBootstrap();
+            Context.Activate();
         }
     }
 }
