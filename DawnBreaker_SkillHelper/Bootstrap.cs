@@ -6,7 +6,14 @@ namespace DawnBreaker_SkillHelper
 {
     public class Bootstrap : Bootstrapper
     {
+        private MenuSettings MenuSettings { get; set; }
+
         private Context Context { get; set; }
+
+        protected override void OnMainActivate()
+        {
+            MenuSettings = new();
+        }
 
         protected override void OnActivate()
         {
@@ -15,7 +22,7 @@ namespace DawnBreaker_SkillHelper
                 return;
             }
 
-            Context = new Context();
+            Context = new Context(MenuSettings);
         }
 
         protected override void OnDeactivate()

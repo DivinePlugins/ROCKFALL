@@ -6,11 +6,8 @@ using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
 using Divine.Input;
-using Divine.Menu;
-using Divine.Menu.Items;
 using Divine.Order;
 using Divine.Order.Orders.Components;
-using Divine.Renderer;
 using Divine.Update;
 
 using ESExtermination.Abilities.Spells;
@@ -32,10 +29,6 @@ namespace ESExtermination.Feature
 
         private bool IsIgnoringInputs => isAltPressed || isCtrlPressed;
 
-        private MenuSwitcher smartSmash;
-        private MenuSwitcher smartRoll;
-        private MenuSwitcher smartGrip;
-
         public SmartSpells(Context context)
             : base(context)
         {
@@ -45,13 +38,6 @@ namespace ESExtermination.Feature
             grip = context.Combo.Grip;
 
             stoneName = StoneExtensions.StoneName;
-
-            var smartSpellsMenu = rootMenu.AddMenu("Smart spells").SetTooltip("Auto place stone when it is necessary");
-
-            smartSmash = smartSpellsMenu.AddSwitcher("When using smash").SetImage(AbilityId.earth_spirit_boulder_smash);
-            smartRoll = smartSpellsMenu.AddSwitcher("When using roll").SetImage(AbilityId.earth_spirit_rolling_boulder);
-            smartGrip = smartSpellsMenu.AddSwitcher("When using grip").SetImage(AbilityId.earth_spirit_geomagnetic_grip);
-
         }
 
         public override void Start()
@@ -106,7 +92,7 @@ namespace ESExtermination.Feature
 
             var localHeroPos = localHero.Position;
 
-            if (smartSmash.Value
+            if (context.smartSmash.Value
                 && e.Order.Ability == smash.Base
                 && e.Order.Type != OrderType.CastTarget)
             {
@@ -122,7 +108,7 @@ namespace ESExtermination.Feature
                 return;
             }
 
-            if (smartGrip.Value && e.Order.Ability == grip.Base)
+            if (context.smartGrip.Value && e.Order.Ability == grip.Base)
             {
                 var mousePos = GameManager.MousePosition;
 
@@ -140,7 +126,7 @@ namespace ESExtermination.Feature
                 return;
             }
 
-            if (smartRoll.Value && e.Order.Ability == roll.Base)
+            if (context.smartRoll.Value && e.Order.Ability == roll.Base)
             {
                 var orderPos = e.Order.Position;
 

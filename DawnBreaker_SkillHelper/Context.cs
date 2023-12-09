@@ -7,10 +7,10 @@
         public StarbreakerHelper StarbreakerHelper { get; set; }
         public HammerHelper HammerHelper { get; set; }
 
-        public Context()
+        public Context(MenuSettings menu)
         {
+            Menu = menu;
             Dawnbreaker = new Dawnbreaker();
-            Menu = new MenuSettings(this);
             StarbreakerHelper = new StarbreakerHelper(this);
             HammerHelper = new HammerHelper(this);
         }
@@ -18,7 +18,6 @@
         internal void Dispose()
         {
             Dawnbreaker.Dispose();
-            Menu.Dispose();
             StarbreakerHelper.Dispose();
             HammerHelper.Dispose();
         }

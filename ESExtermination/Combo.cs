@@ -11,8 +11,6 @@ using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Game;
 using Divine.Helpers;
-using Divine.Menu;
-using Divine.Menu.Components;
 using Divine.Menu.EventArgs;
 using Divine.Menu.Items;
 using Divine.Orbwalker;
@@ -24,23 +22,6 @@ using ESExtermination.Extensions;
 
 internal class Combo : IDisposable
 {
-    private readonly MenuTogglerAbility[] items =
-    [
-        (AbilityId.item_veil_of_discord, true),
-        (AbilityId.item_blink, true),
-        (AbilityId.item_arcane_blink, true),
-        (AbilityId.item_overwhelming_blink, true),
-        (AbilityId.item_swift_blink, true),
-        (AbilityId.item_orchid, true),
-        (AbilityId.item_bloodthorn, true),
-        (AbilityId.item_sheepstick, true),
-        (AbilityId.item_abyssal_blade, true),
-        (AbilityId.item_shivas_guard, true),
-        (AbilityId.item_urn_of_shadows, true),
-        (AbilityId.item_spirit_vessel, true),
-        (AbilityId.item_heavens_halberd, true)
-    ];
-
     public Grip Grip { get; private set; }
     public Roll Roll { get; private set; }
     public Smash Smash { get; private set; }
@@ -64,14 +45,11 @@ internal class Combo : IDisposable
 
     private Hero localHero;
 
-    public static MenuItemToggler ComboItems;
-
     public Combo(Context context)
     {
         this.context = context;
 
         localHero = context.LocalHero;
-        ComboItems = context.RootMenu.AddItemToggler("Items", items).SetTooltip("Select combo items");
 
         Smash = new Smash(localHero.GetAbilityById(AbilityId.earth_spirit_boulder_smash));
         Roll = new Roll(localHero.GetAbilityById(AbilityId.earth_spirit_rolling_boulder));

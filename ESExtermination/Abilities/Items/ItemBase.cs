@@ -28,7 +28,7 @@ namespace ESExtermination.Abilities.Items
                 return false;
             }
 
-            if (Combo.ComboItems?.GetValue(Base.Id) == false)
+            if (Context.ComboItems.GetValue(Base.Id) == false)
             {
                 return false;
             }

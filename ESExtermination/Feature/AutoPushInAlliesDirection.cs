@@ -3,24 +3,17 @@
 using System.Linq;
 
 using Divine.Entity;
-using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
 using Divine.Helpers;
-using Divine.Menu;
 using Divine.Menu.EventArgs;
 using Divine.Menu.Items;
-using Divine.Renderer;
 using Divine.Update;
 
 using ESExtermination.Abilities.Spells;
 
 class AutoPushInAlliesDirection : FeatureBase
 {
-    private Menu featureMenu;
-    private MenuSelector modeSelector;
-    private MenuSlider minAllyHpPercent;
-
     private Smash smash;
     private Enchant enchant;
 
@@ -31,21 +24,17 @@ class AutoPushInAlliesDirection : FeatureBase
     {
         smash = context.Combo.Smash;
         enchant = context.Combo.Enchant;
-
-        featureMenu = rootMenu.AddMenu("Auto push under allies").SetImage(AbilityId.earth_spirit_boulder_smash);
-        modeSelector = featureMenu.AddSelector("Mode", ["Off", "On", "Also with agha"]).SetTooltip("Auto use smash for push in allies");
-        minAllyHpPercent = featureMenu.AddSlider("Min. ally hp %", 20, 0, 80);
     }
 
     public override void Start()
     {
-        modeSelector.ValueChanged += FeatureSelector_ValueChanged;
+        context.underAlliesMode.ValueChanged += FeatureSelector_ValueChanged;
     }
 
     public override void Dispose()
     {
         UpdateManager.DestroyIngameUpdate(IngameUpdate);
-        modeSelector.ValueChanged -= FeatureSelector_ValueChanged;
+        context.underAlliesMode.ValueChanged -= FeatureSelector_ValueChanged;
     }
 
     private void FeatureSelector_ValueChanged(MenuSelector<string> sender, SelectorChangedEventArgs<string> e)
@@ -82,7 +71,7 @@ class AutoPushInAlliesDirection : FeatureBase
                                                                     && x.IsAlive
                                                                     && !x.IsIllusion);
 
-        if (modeSelector.Value == "Also with agha" && enchant.CanBeCasted())
+        if (context.underAlliesMode.Value == "Also with agha" && enchant.CanBeCasted())
         {
             var alliesAround = allies.Where(x => x.Distance2D(target) < 1000);
 
@@ -102,7 +91,7 @@ class AutoPushInAlliesDirection : FeatureBase
                     continue;
                 }
 
-                if (alliesArroundDestination.All(x => x.HealthPercent() > (float)minAllyHpPercent.Value / 100))
+                if (alliesArroundDestination.All(x => x.HealthPercent() > (float)context.underAlliesMinAllyHpPercent / 100))
                 {
                     enchant.Base.Cast(target);
                     sleeper.Sleep(500);
@@ -123,7 +112,7 @@ class AutoPushInAlliesDirection : FeatureBase
         var alliesNear = allies.Where(x => x.Distance2D(localHero) < range / 1.5f);
         var alliesNearDestination = allies.Where(x => x.Position.Distance2D(destination) < range);
 
-        if (alliesNearDestination.Any(x => x.HealthPercent() < (float)minAllyHpPercent.Value / 100)
+        if (alliesNearDestination.Any(x => x.HealthPercent() < (float)context.underAlliesMinAllyHpPercent / 100)
             || alliesNear.Count() >= alliesNearDestination.Count())
         {
             return;

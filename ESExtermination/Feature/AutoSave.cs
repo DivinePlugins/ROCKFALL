@@ -3,14 +3,10 @@
 using System.Linq;
 
 using Divine.Entity;
-using Divine.Entity.Entities.Abilities.Components;
-using Divine.Entity.Entities.Abilities.Items.Components;
 using Divine.Entity.Entities.Units;
 using Divine.Extensions;
-using Divine.Menu;
 using Divine.Menu.EventArgs;
 using Divine.Menu.Items;
-using Divine.Renderer;
 using Divine.Update;
 
 using ESExtermination.Abilities.Spells;
@@ -18,8 +14,6 @@ using ESExtermination.Extensions;
 
 internal class AutoSave : FeatureBase
 {
-    private MenuSlider minHpPercentForSave;
-
     private readonly string fountainName = "dota_fountain";
 
     private Unit myFountain;
@@ -33,24 +27,19 @@ internal class AutoSave : FeatureBase
         smash = context.Combo.Smash;
         enchant = context.Combo.Enchant;
 
-        minHpPercentForSave = rootMenu
-            .AddSlider("Min. HP% for save with enchant", 0, 0, 50)
-            .SetTooltip("Uses enchant + smash for save")
-            .SetImage(ItemId.item_ultimate_scepter, true);
-
         myFountain = EntityManager.GetEntities<Unit>().FirstOrDefault(x => x.Name == fountainName
                                                                         && x.IsAlly(localHero));
     }
 
     public override void Start()
     {
-        minHpPercentForSave.ValueChanged += MinHpPercentForSave_ValueChanged;
+        context.minHpPercentForSave.ValueChanged += MinHpPercentForSave_ValueChanged;
     }
 
     public override void Dispose()
     {
         UpdateManager.DestroyIngameUpdate(AutoSaveUpdater);
-        minHpPercentForSave.ValueChanged -= MinHpPercentForSave_ValueChanged;
+        context.minHpPercentForSave.ValueChanged -= MinHpPercentForSave_ValueChanged;
     }
 
     private void MinHpPercentForSave_ValueChanged(MenuSlider slider, SliderChangedEventArgs e)
@@ -67,7 +56,7 @@ internal class AutoSave : FeatureBase
 
     private void AutoSaveUpdater()
     {
-        if (localHero.HealthPercent() > (float)minHpPercentForSave.Value / 100)
+        if (localHero.HealthPercent() > (float)context.minHpPercentForSave / 100)
         {
             return;
         }
