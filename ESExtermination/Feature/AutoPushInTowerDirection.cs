@@ -60,7 +60,7 @@ internal class AutoPushInTowerDirection : FeatureBase
         }
     }
 
-    private void FeatureSelector_ValueChanged(MenuSelector<string> sender, SelectorChangedEventArgs<string> e)
+    private void FeatureSelector_ValueChanged(MenuSelector sender, SelectorChangedEventArgs e)
     {
         if (e.Value != "Off")
         {

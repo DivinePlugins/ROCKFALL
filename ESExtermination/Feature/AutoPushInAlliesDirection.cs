@@ -37,7 +37,7 @@ class AutoPushInAlliesDirection : FeatureBase
         context.underAlliesMode.ValueChanged -= FeatureSelector_ValueChanged;
     }
 
-    private void FeatureSelector_ValueChanged(MenuSelector<string> sender, SelectorChangedEventArgs<string> e)
+    private void FeatureSelector_ValueChanged(MenuSelector sender, SelectorChangedEventArgs e)
     {
         if (e.Value != "Off")
         {

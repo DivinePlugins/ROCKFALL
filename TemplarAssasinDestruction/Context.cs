@@ -20,7 +20,10 @@ namespace TemplarAssasinDestruction
         public Context()
         {
             PluginMenu = new PluginMenu();
+        }
 
+        public void Activate()
+        {
             PluginMenu.PluginStatus.ValueChanged += PluginStatus_ValueChanged;
         }
 

@@ -2,6 +2,7 @@
 
 using Divine.Entity;
 using Divine.Entity.Entities.Abilities.Components;
+using Divine.Entity.Entities.Abilities.Items.Components;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Entity.Entities.Units.Heroes.Components;
 using Divine.Menu;
@@ -13,21 +14,21 @@ using ESExtermination.Feature;
 
 internal class Context
 {
-    private readonly MenuTogglerAbility[] items =
+    private readonly MenuTogglerItem[] items =
     [
-        (AbilityId.item_veil_of_discord, true),
-        (AbilityId.item_blink, true),
-        (AbilityId.item_arcane_blink, true),
-        (AbilityId.item_overwhelming_blink, true),
-        (AbilityId.item_swift_blink, true),
-        (AbilityId.item_orchid, true),
-        (AbilityId.item_bloodthorn, true),
-        (AbilityId.item_sheepstick, true),
-        (AbilityId.item_abyssal_blade, true),
-        (AbilityId.item_shivas_guard, true),
-        (AbilityId.item_urn_of_shadows, true),
-        (AbilityId.item_spirit_vessel, true),
-        (AbilityId.item_heavens_halberd, true)
+        (ItemId.item_veil_of_discord, true),
+        (ItemId.item_blink, true),
+        (ItemId.item_arcane_blink, true),
+        (ItemId.item_overwhelming_blink, true),
+        (ItemId.item_swift_blink, true),
+        (ItemId.item_orchid, true),
+        (ItemId.item_bloodthorn, true),
+        (ItemId.item_sheepstick, true),
+        (ItemId.item_abyssal_blade, true),
+        (ItemId.item_shivas_guard, true),
+        (ItemId.item_urn_of_shadows, true),
+        (ItemId.item_spirit_vessel, true),
+        (ItemId.item_heavens_halberd, true)
     ];
 
     public Hero LocalHero { get; private set; }

@@ -6,14 +6,21 @@ namespace TemplarAssasinDestruction
 {
     public class Bootstrap : Bootstrapper
     {
+        private Context Context;
+
+        protected override void OnMainActivate()
+        {
+            Context = new Context();
+        }
+
         protected override void OnActivate()
         {
-            if (EntityManager.LocalHero.HeroId != HeroId.npc_dota_hero_templar_assassin)
+            if (EntityManager.LocalHero.Id != HeroId.npc_dota_hero_templar_assassin)
             {
                 return;
             }
 
-            new Context();
+            Context.Activate();
         }
     }
 }
