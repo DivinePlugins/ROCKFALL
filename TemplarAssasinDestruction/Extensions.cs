@@ -7,6 +7,7 @@ using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Units.Heroes;
 using System.Collections.Generic;
 using System.Linq;
+using Divine.Entity.Entities.Abilities.Items.Components;
 
 namespace TemplarAssasinDestruction
 {
@@ -16,7 +17,7 @@ namespace TemplarAssasinDestruction
         {
             Hero localHero = EntityManager.LocalHero;
             float attackRange = localHero.AttackRange;
-            if (localHero.Inventory.MainItems.Any(x => x.Id == AbilityId.item_dragon_lance || x.Id == AbilityId.item_hurricane_pike))
+            if (localHero.Inventory.MainItems.Any(x => x.Id == ItemId.item_dragon_lance || x.Id == ItemId.item_hurricane_pike))
             {
                 attackRange += 140;
             }

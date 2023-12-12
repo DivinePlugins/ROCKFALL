@@ -1,4 +1,5 @@
 ﻿using Divine.Entity.Entities.Abilities.Components;
+using Divine.Entity.Entities.Abilities.Items.Components;
 using Divine.Entity.Entities.Units.Heroes.Components;
 using Divine.Menu;
 using Divine.Menu.Components;
@@ -17,18 +18,18 @@ namespace TemplarAssasinDestruction
 
         private Menu RootMenu;
 
-        private readonly MenuTogglerAbility[] Items =
+        private readonly MenuTogglerItem[] Items =
         [
-            (AbilityId.item_blink, true),
-            (AbilityId.item_swift_blink, true),
-            (AbilityId.item_overwhelming_blink, true),
-            (AbilityId.item_arcane_blink, true),
-            (AbilityId.item_black_king_bar, true),
-            (AbilityId.item_sheepstick, true),
-            (AbilityId.item_manta, true),
-            (AbilityId.item_nullifier, true),
-            (AbilityId.item_orchid, true),
-            (AbilityId.item_bloodthorn, true)
+            (ItemId.item_blink, true),
+            (ItemId.item_swift_blink, true),
+            (ItemId.item_overwhelming_blink, true),
+            (ItemId.item_arcane_blink, true),
+            (ItemId.item_black_king_bar, true),
+            (ItemId.item_sheepstick, true),
+            (ItemId.item_manta, true),
+            (ItemId.item_nullifier, true),
+            (ItemId.item_orchid, true),
+            (ItemId.item_bloodthorn, true)
         ];
 
         public PluginMenu()

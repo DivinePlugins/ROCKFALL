@@ -3,6 +3,7 @@ using Divine.Extensions;
 using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Abilities.Items;
 using Divine.Entity.Entities.Units.Heroes;
+using Divine.Entity.Entities.Abilities.Items.Components;
 
 namespace TemplarAssasinDestruction.Abilities.Items
 {
@@ -35,7 +36,7 @@ namespace TemplarAssasinDestruction.Abilities.Items
 
             if (LocalHero.Distance2D(target) < attackRange + distance)
             {
-                if (BaseBlink.Id == AbilityId.item_swift_blink)
+                if (BaseBlink.Id == ItemId.item_swift_blink)
                 {
                     BaseBlink.Cast(target.InFront(150));
                     return true;
@@ -51,7 +52,7 @@ namespace TemplarAssasinDestruction.Abilities.Items
                 return false;
             }
 
-            
+
 
             BaseBlink.Cast(blinkPoint);
             return true;

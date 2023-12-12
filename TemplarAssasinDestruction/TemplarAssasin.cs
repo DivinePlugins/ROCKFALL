@@ -6,6 +6,7 @@ using Divine.Entity.Entities.Units.Heroes;
 using System;
 using TemplarAssasinDestruction.Abilities.Items;
 using TemplarAssasinDestruction.Abilities.Spells;
+using Divine.Entity.Entities.Abilities.Items.Components;
 
 namespace TemplarAssasinDestruction
 {
@@ -54,16 +55,16 @@ namespace TemplarAssasinDestruction
 
         private bool IsBlink(Item item)
         {
-            return item.Id == AbilityId.item_blink
-                || item.Id == AbilityId.item_swift_blink
-                || item.Id == AbilityId.item_overwhelming_blink
-                || item.Id == AbilityId.item_arcane_blink;
+            return item.Id == ItemId.item_blink
+                || item.Id == ItemId.item_swift_blink
+                || item.Id == ItemId.item_overwhelming_blink
+                || item.Id == ItemId.item_arcane_blink;
         }
 
         private bool IsOrchid(Item item)
         {
-            return item.Id == AbilityId.item_orchid
-                || item.Id == AbilityId.item_bloodthorn;
+            return item.Id == ItemId.item_orchid
+                || item.Id == ItemId.item_bloodthorn;
         }
 
         private void ItemChecker()
@@ -74,13 +75,13 @@ namespace TemplarAssasinDestruction
                     Blink = new Blink(item, Context);
                 if (IsOrchid(item))
                     Orchid = new Orchid(item, Context);
-                if (item.Id == AbilityId.item_black_king_bar && BlackKingBar == null)
+                if (item.Id == ItemId.item_black_king_bar && BlackKingBar == null)
                     BlackKingBar = new BlackKingBar(item, Context);
-                if (item.Id == AbilityId.item_manta && Manta == null)
+                if (item.Id == ItemId.item_manta && Manta == null)
                     Manta = new Manta(item, Context);
-                if (item.Id == AbilityId.item_sheepstick && Hex == null)
+                if (item.Id == ItemId.item_sheepstick && Hex == null)
                     Hex = new Hex(item, Context);
-                if (item.Id == AbilityId.item_nullifier && Nullifier == null)
+                if (item.Id == ItemId.item_nullifier && Nullifier == null)
                     Nullifier = new Nullifier(item, Context);
 
 
