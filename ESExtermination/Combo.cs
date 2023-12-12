@@ -6,6 +6,7 @@ using System.Linq;
 using Divine.Entity;
 using Divine.Entity.Entities.Abilities;
 using Divine.Entity.Entities.Abilities.Components;
+using Divine.Entity.Entities.Abilities.Items.Components;
 using Divine.Entity.Entities.Units;
 using Divine.Entity.Entities.Units.Heroes;
 using Divine.Extensions;
@@ -152,31 +153,31 @@ internal class Combo : IDisposable
             }
 
             if (VeilOfDiscord == null
-                && item.Id == AbilityId.item_veil_of_discord)
+                && item.Id == ItemId.item_veil_of_discord)
             {
                 VeilOfDiscord = new VeilOfDiscord(item);
             }
 
             if (Shivas == null
-                && item.Id == AbilityId.item_shivas_guard)
+                && item.Id == ItemId.item_shivas_guard)
             {
                 Shivas = new Shivas(item);
             }
 
             if (Hex == null
-                && item.Id == AbilityId.item_sheepstick)
+                && item.Id == ItemId.item_sheepstick)
             {
                 Hex = new Hex(item);
             }
 
             if (Abyssal == null
-                && item.Id == AbilityId.item_abyssal_blade)
+                && item.Id == ItemId.item_abyssal_blade)
             {
                 Abyssal = new Abyssal(item);
             }
 
             if (Halberd == null
-                && item.Id == AbilityId.item_heavens_halberd)
+                && item.Id == ItemId.item_heavens_halberd)
             {
                 Halberd = new Halberd(item);
             }
