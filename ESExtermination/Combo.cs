@@ -153,31 +153,31 @@ internal class Combo : IDisposable
             }
 
             if (VeilOfDiscord == null
-                && item.Id == ItemId.item_veil_of_discord)
+                && item.ItemId == ItemId.item_veil_of_discord)
             {
                 VeilOfDiscord = new VeilOfDiscord(item);
             }
 
             if (Shivas == null
-                && item.Id == ItemId.item_shivas_guard)
+                && item.ItemId == ItemId.item_shivas_guard)
             {
                 Shivas = new Shivas(item);
             }
 
             if (Hex == null
-                && item.Id == ItemId.item_sheepstick)
+                && item.ItemId == ItemId.item_sheepstick)
             {
                 Hex = new Hex(item);
             }
 
             if (Abyssal == null
-                && item.Id == ItemId.item_abyssal_blade)
+                && item.ItemId == ItemId.item_abyssal_blade)
             {
                 Abyssal = new Abyssal(item);
             }
 
             if (Halberd == null
-                && item.Id == ItemId.item_heavens_halberd)
+                && item.ItemId == ItemId.item_heavens_halberd)
             {
                 Halberd = new Halberd(item);
             }
