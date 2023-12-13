@@ -36,7 +36,7 @@ namespace TemplarAssasinDestruction.Abilities.Items
 
             if (LocalHero.Distance2D(target) < attackRange + distance)
             {
-                if (BaseBlink.Id == ItemId.item_swift_blink)
+                if (BaseBlink.ItemId == ItemId.item_swift_blink)
                 {
                     BaseBlink.Cast(target.InFront(150));
                     return true;

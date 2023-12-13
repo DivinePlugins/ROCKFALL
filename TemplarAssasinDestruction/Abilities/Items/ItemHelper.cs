@@ -38,7 +38,7 @@ namespace TemplarAssasinDestruction.Abilities.Items
                 return false;
             }
 
-            if (Context.PluginMenu.ComboItems.GetValue(item.Id) == false)
+            if (Context.PluginMenu.ComboItems.GetValue(item.ItemId) == false)
             {
                 return false;
             }

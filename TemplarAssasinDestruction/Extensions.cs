@@ -17,7 +17,7 @@ namespace TemplarAssasinDestruction
         {
             Hero localHero = EntityManager.LocalHero;
             float attackRange = localHero.AttackRange;
-            if (localHero.Inventory.MainItems.Any(x => x.Id == ItemId.item_dragon_lance || x.Id == ItemId.item_hurricane_pike))
+            if (localHero.Inventory.MainItems.Any(x => x.ItemId == ItemId.item_dragon_lance || x.ItemId == ItemId.item_hurricane_pike))
             {
                 attackRange += 140;
             }

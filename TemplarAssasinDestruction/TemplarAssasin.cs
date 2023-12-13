@@ -55,16 +55,16 @@ namespace TemplarAssasinDestruction
 
         private bool IsBlink(Item item)
         {
-            return item.Id == ItemId.item_blink
-                || item.Id == ItemId.item_swift_blink
-                || item.Id == ItemId.item_overwhelming_blink
-                || item.Id == ItemId.item_arcane_blink;
+            return item.ItemId == ItemId.item_blink
+                || item.ItemId == ItemId.item_swift_blink
+                || item.ItemId == ItemId.item_overwhelming_blink
+                || item.ItemId == ItemId.item_arcane_blink;
         }
 
         private bool IsOrchid(Item item)
         {
-            return item.Id == ItemId.item_orchid
-                || item.Id == ItemId.item_bloodthorn;
+            return item.ItemId == ItemId.item_orchid
+                || item.ItemId == ItemId.item_bloodthorn;
         }
 
         private void ItemChecker()
@@ -75,13 +75,13 @@ namespace TemplarAssasinDestruction
                     Blink = new Blink(item, Context);
                 if (IsOrchid(item))
                     Orchid = new Orchid(item, Context);
-                if (item.Id == ItemId.item_black_king_bar && BlackKingBar == null)
+                if (item.ItemId == ItemId.item_black_king_bar && BlackKingBar == null)
                     BlackKingBar = new BlackKingBar(item, Context);
-                if (item.Id == ItemId.item_manta && Manta == null)
+                if (item.ItemId == ItemId.item_manta && Manta == null)
                     Manta = new Manta(item, Context);
-                if (item.Id == ItemId.item_sheepstick && Hex == null)
+                if (item.ItemId == ItemId.item_sheepstick && Hex == null)
                     Hex = new Hex(item, Context);
-                if (item.Id == ItemId.item_nullifier && Nullifier == null)
+                if (item.ItemId == ItemId.item_nullifier && Nullifier == null)
                     Nullifier = new Nullifier(item, Context);
 
 
